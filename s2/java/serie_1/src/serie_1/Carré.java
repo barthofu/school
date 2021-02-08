@@ -9,13 +9,10 @@ package serie_1;
  *
  * @author p2001833
  */
-public class Main {
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
-    }
+public class Carré {
     
+    public static boolean carréParfait (int n) {
+        
+        return (Math.sqrt(n) * Math.sqrt(n) == n);
+    }
 }
