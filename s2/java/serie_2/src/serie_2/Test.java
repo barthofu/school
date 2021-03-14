@@ -30,37 +30,7 @@ public class Test {
         
         //exercice 2 -----------
         
-        String hMarche;
-        String nbMarche;
-        
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        
-        try {
-            
-            System.out.println("entrez le nombre de marche : ");
-            nbMarche = reader.readLine();
-            
-            System.out.println("entrez la hauteur des marches (en cm): ");
-            hMarche = reader.readLine();
-            
-            try {
-                
-                int nombreMarche = Integer.parseInt(nbMarche);
-                double hauteurMarche = Double.parseDouble(hMarche);
-                
-                System.out.println("Pour " + nombreMarche + " marches de " + hauteurMarche + " cm, le gardien parcourt " + Phare.hauteurParcourue(nombreMarche, hauteurMarche) + " mètres par semaine.");
 
-            } catch(java.lang.NumberFormatException e) {
-                System.out.println("Problème de type");
-            } catch(Exception e) {
-                System.out.println("Une erreur est survenue : " + e);
-            } finally {
-                System.out.println("\n\n\nAu-revoir !\n");
-            }
-            
-        } catch ( IOException e ) {
-            System.out.println("Erreur lors de la saisie");
-        }
         
 
         

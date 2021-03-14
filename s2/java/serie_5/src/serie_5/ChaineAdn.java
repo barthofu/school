@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package serie_3;
+package serie_5;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -15,34 +15,7 @@ import java.util.regex.Pattern;
  *
  * @author Bartho
  */
-public class Main {
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        
-        System.out.println("Entrez la chaine ADN");
-        String sequenceAdn = saisie();
-        System.out.println("entrez la séquence ADN");
-        String seq = saisie();
-        System.out.printf("Il y a %.2f%% de la sequence donnée dans la chaine renseignée", proportion(sequenceAdn, seq));
-    }
-    
-    public static String reverse(String str){
-        
-        StringBuilder builder = new StringBuilder(str);
-        int length = builder.length();
-        
-        for (int i = 0; i < length/2; i++){
-            
-            char temp = builder.charAt(i);
-            builder.setCharAt(i, builder.charAt(length-i-1));
-            builder.setCharAt(length-i-1, temp);
-        }
-        
-        return builder.toString();
-    }
+public class ChaineAdn {
     
     public static boolean valid(String str){
         
@@ -70,7 +43,7 @@ public class Main {
                 if (str.equals("Q")) System.exit(0);
                 
             } catch(IOException e) {
-                System.exit(1);
+                System.out.println(e);;
             }
             
         }
@@ -81,15 +54,23 @@ public class Main {
     public static double proportion(String chaineAdn, String sequenceAdn){
         
         int occur = 0;
-        Matcher matcher = Pattern.compile(sequenceAdn).matcher(chaineAdn);
         
-        while (matcher.find()) {
-            occur++;
+        try {
+            
+            if (chaineAdn.length() < sequenceAdn.length()) throw new Exception("La séquence est plus longue que la chaine d'ADN de base");
+                    
+            Matcher matcher = Pattern.compile(sequenceAdn).matcher(chaineAdn);
+
+            while (matcher.find()) {
+                occur++;
+            }
+            
+        } catch (Exception e) {
+            System.out.println(e);
         }
         
         return ((occur*sequenceAdn.length()/(double)chaineAdn.length()))*100;
+        
     }
-    
-    
     
 }
