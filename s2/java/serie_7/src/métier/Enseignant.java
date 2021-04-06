@@ -27,8 +27,10 @@ public abstract class Enseignant extends Personnel {
         this.numeroCasier = numeroC;
     }
     
+    @Override
     public String toString() {
-        return "";
+        return super.toString() 
+            + "numeroCasier : " + numeroCasier + "\n";
     }
     
     

@@ -24,10 +24,17 @@ public abstract class Personnel {
         
     }
     
+    public boolean hasGratification () {
+        return this instanceof Gratifie;
+    }
+    
     abstract double calculerSalaire();
     
     public String toString() {
-        return "";
+        return 
+                "Nom : " + nomPersonnel + "\n"
+            +   "Numero : " + numeroPersonnel + "\n"
+            +   "Numero du Bureau : " + numeroBureau + "\n";
     }
 
     public int getNumeroPersonnel() {

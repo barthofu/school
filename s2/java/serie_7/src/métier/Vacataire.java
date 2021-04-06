@@ -21,14 +21,15 @@ public class Vacataire extends Enseignant {
         nombreDHeures = nbDH;
     }
     
+    @Override
     public double calculerSalaire () {
         
-        int somme = 0;
+        int sommeHeures = 0;
         for (int value : nombreDHeures) {
-            somme += value;
+            sommeHeures += value;
         }
   
-        return (double) somme * tarifHoraire;
+        return (double) sommeHeures * tarifHoraire;
     }
 
     public double getTarifHoraire() {
@@ -47,8 +48,19 @@ public class Vacataire extends Enseignant {
         this.nombreDHeures = nombreDHeures;
     }
         
+    @Override
     public String toString() {
-        return "";
+        
+        int sommeHeures = 0;
+        
+        for (int value : nombreDHeures) {
+            sommeHeures += value;
+        }
+        
+        return super.toString()
+            + "Nombre d'heures : "      + sommeHeures       + "h\n"
+            + "Tarif horaire : "        + tarifHoraire      + " €\n"
+            + "Sera payé ce mois-ci: "  + calculerSalaire() + " €\n";
     } 
     
 }

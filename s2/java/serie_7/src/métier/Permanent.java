@@ -19,6 +19,7 @@ public class Permanent extends Enseignant implements Gratifie {
         salaireMensuel = salaireM;
     }
     
+    @Override
     public double calculerSalaire () {
         return salaireMensuel + Gratifie.primeMensuelle;
     }
@@ -27,8 +28,11 @@ public class Permanent extends Enseignant implements Gratifie {
         this.salaireMensuel = salaireMensuel;
     }
         
-    public String toString() {
-        return "";
+    @Override
+    public String toString(){
+        return super.toString()
+            + "Salaire mensuel : " + salaireMensuel + " €\n"
+            + "Sera payé ce mois-ci : " + calculerSalaire() + " €\n";
     }
     
 }
