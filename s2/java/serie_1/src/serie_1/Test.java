@@ -24,7 +24,7 @@ public class Test {
 
         } catch (NumberFormatException e) {
             
-            System.out.println("L'argument n'est pas un entier");
+            System.out.println("L'argument n'est pas un entier" + e);
             
         } catch ( Exception e) {
             
