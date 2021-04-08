@@ -1,0 +1,6 @@
+user : p2001833
+pwd : 562933
+
+host : iutdoua-ora.univ-lyon1.fr
+port : 1521
+sid : cdb1
