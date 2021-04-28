@@ -5,6 +5,11 @@
  */
 package serie_5;
 
+<<<<<<< HEAD
+/**
+ *
+ * @author p2001833
+=======
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -15,6 +20,7 @@ import java.util.Scanner;
 /**
  *
  * @author Bartho
+>>>>>>> 4504634e237b2b7504b41f33c62fbcbd3a92473e
  */
 public class Main {
 
@@ -22,6 +28,9 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+<<<<<<< HEAD
+        // TODO code application logic here
+=======
 
         int exo;
         boolean enCours = true;
@@ -198,6 +207,7 @@ public class Main {
         
 
         
+>>>>>>> 4504634e237b2b7504b41f33c62fbcbd3a92473e
     }
     
 }
