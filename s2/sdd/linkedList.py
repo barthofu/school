@@ -115,19 +115,34 @@ class LCListe:
         
         return currMaillon
     
-
+    
+# ================ TESTS ====================== #
+    
+class LCListeTest:
+    
+    def __init__(self):
+        self._arr = LCListe()
         
-        
+    
+    def run (self):
+         
+        self._arr.ajouter(2)
+        self._arr.ajouter(1)
+        self._arr.ajouter(3)
+        self._arr.ajouter(4)
 
-arr = LCListe()
-arr.ajouter(1)
-arr.ajouter(2)
-arr.ajouter(3)
-arr.ajouter(4)
+        self._arr.afficherTableau()
+        print("======================")
 
-arr.afficherTableau()
+        self._arr.set("a", 2)
+        self._arr.suppr(3)
 
-arr.set("a", 2)
+        self._arr.afficherTableau()
 
-arr.afficherTableau()
+        print("======================")
 
+        print(self._arr.retournerLongueur())
+
+
+
+LCListeTest().run()
