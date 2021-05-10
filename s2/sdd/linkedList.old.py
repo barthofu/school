@@ -11,43 +11,58 @@ class LCListe:
         
     def __init__(self):
         
-        self._tete = self.Maillon(None)
-        self._dernier = self._tete
+        self._premier = None
+        self._dernier = None
         self._nbElem = 0
         
         
         
-    def ajouter (self, valeur):
+    def ajouter (self, valeur, index = None):
+    
+        if index == None:
+            index = self._nbElem
         
-        nouvMaillon = self.Maillon(valeur)
+        nvMaillon = self.Maillon(valeur)
         
-        self._dernier._suiv = nouvMaillon
-        self._dernier = nouvMaillon
-        self._nbElem += 1    
+        if self._nbElem == 0:
+            self._premier, self._dernier = nvMaillon, nvMaillon
+        else:
+            if index == 0:
+                nvMaillon._suiv = self._premier
+                self._premier = nvMaillon
+            else:
+                currMaillon = self.retournerMaillon(index - 1)
+                if not currMaillon:
+                    return "invalid position"
+                
+                nvMaillon._suiv = currMaillon._suiv
+                currMaillon._suiv = nvMaillon
+
+        self._nbElem += 1
+        
+        return nvMaillon
+        
         
         
     def retournerPos (self, valeur):
         
-        currMaillon = self._tete
-        index = -1
-        trouve = False
+        currMaillon = self._premier
+        iterator = 0
         
-        while (currMaillon._suiv != None and currMaillon._valeur != valeur):
-            currMaillon = currMaillon._suiv
-            if currMaillon._valeur == valeur:
-                trouve = True
-            index += 1
+        while (currMaillon._valeur != valeur):
+            currNode = currMaillon._suiv
+            iterator += 1
         
-        return index if trouve else -1
+        return iterator
         
         
         
     def retournerMaillon (self, index):
         
-        if (index > self._nbElem - 1 or index < 0):
-            raise Exception("index out of range")
+        if (index > self._nbElem - 1):
+            return None
         
-        currMaillon = self._tete._suiv
+        currMaillon = self._premier
         
         for i in range (1, index+1):
             currMaillon = currMaillon._suiv
@@ -63,26 +78,23 @@ class LCListe:
     
     def afficherTableau (self):
         
-        currMaillon = self._tete._suiv
-        text = "["
+        currMaillon = self._premier
         
         for i in range (0, self._nbElem):
-            text += str(currMaillon._valeur) + (", " if i < self._nbElem - 1 else "")
+            print(currMaillon._valeur)
             currMaillon = currMaillon._suiv
             
-        print(text + "]")            
             
-       
             
     def suppr (self, index):
         
         if index == 0:
-            removedMaillon = self._tete._suiv
-            self._tete._suiv = self._tete._suiv._suiv
+            removedMaillon = self._premier
+            self._premier = self._premier._suiv
         else:
             currMaillon = self.retournerMaillon(index - 1)
             if not currMaillon:
-                raise Exception("index out of range")
+                return "invalid position"
             
             removedMaillon = currMaillon._suiv
             currMaillon._suiv = currMaillon._suiv._suiv
@@ -97,7 +109,7 @@ class LCListe:
         
         currMaillon = self.retournerMaillon(index)
         if not currMaillon:
-            raise Exception("index out of range")
+            return "invalid position"
         
         currMaillon._valeur = valeur
         
@@ -115,7 +127,7 @@ class LCListeTest:
     def run (self):
          
         self._arr.ajouter(2)
-        self._arr.ajouter(1)
+        self._arr.ajouter(1, 0)
         self._arr.ajouter(3)
         self._arr.ajouter(4)
 
@@ -123,7 +135,6 @@ class LCListeTest:
         print("======================")
 
         self._arr.set("a", 2)
-        print(self._arr.retournerPos(1))
         self._arr.suppr(3)
 
         self._arr.afficherTableau()
