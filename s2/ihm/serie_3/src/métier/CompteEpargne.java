@@ -32,7 +32,7 @@ public class CompteEpargne extends Compte {
     
     @Override
     public String toString() {
-        return ("Le compte eparge n°"+this.getNumeroCompte()+" a un taux de remuneration de "+this.getTauxRemuneration()+"et un plafond de "+this.getPlafondMax());
+        return ("Le compte eparge n°" + this.getNumeroCompte() + " a un taux de r&emuneration de " + this.getTauxRemuneration() + "et un plafond de " + this.getPlafondMax());
     }
 
     public double getPlafondMax() {
