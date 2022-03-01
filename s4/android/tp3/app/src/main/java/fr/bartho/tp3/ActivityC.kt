@@ -2,16 +2,16 @@ package fr.bartho.tp3
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import fr.bartho.tp3.databinding.ActivityBBinding
+import fr.bartho.tp3.databinding.ActivityCBinding
 
-class ActivityB : AppCompatActivity() {
+class ActivityC : AppCompatActivity() {
 
-    private lateinit var binding: ActivityBBinding
+    private lateinit var binding: ActivityCBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding = ActivityBBinding.inflate(layoutInflater)
+        binding = ActivityCBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
 
