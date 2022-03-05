@@ -1,0 +1,48 @@
+:root {
+    --input-border-size: 2px;
+}
+
+body {
+
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.inputField:not(.checkbox) {
+
+    width: 100%;
+    height: 30px;
+    border: var(--input-border-size) solid #ccc;
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 10px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.inputField:not(.checkbox).success {
+    border: var(--input-border-size) solid #4caf50;
+}
+
+.inputField:not(.checkbox).error {
+    border: var(--input-border-size) solid #f44336;
+}
+
+.error {
+    color: #f44336;
+    font-size: 1em;
+    margin-bottom: 1rem;
+}
+
+label {
+
+    font-size: 1em;
+    font-weight: bold;
+}
+
+input {
+
+    padding: 10px;
+    outline: none;
+}

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">tp4</string>
+    <string name="last_name">Nom</string>
+    <string name="first_name">Prénom</string>
+    <string name="date_of_birth">Date de naissance</string>
+    <string name="male">Homme</string>
+    <string name="female">Femme</string>
+    <string name="mail">Mail</string>
+    <string name="phone_number">Tel</string>
+    <string name="add_the_contact">Ajouter</string>
+</resources>

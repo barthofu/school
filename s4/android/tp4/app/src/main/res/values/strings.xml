@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">tp4</string>
+    <string name="last_name">Last name</string>
+    <string name="first_name">First name</string>
+    <string name="date_of_birth">Date of birth</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+    <string name="mail">Mail</string>
+    <string name="phone_number">Phone number</string>
+    <string name="add_the_contact">Add</string>
 </resources>
