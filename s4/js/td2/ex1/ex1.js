@@ -15,3 +15,5 @@ toggleButton.onclick = () => {
         body.style.backgroundColor = 'white'
     }
 }
+
+// TODO(Utiliser une image)

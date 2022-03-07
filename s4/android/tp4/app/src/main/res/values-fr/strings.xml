@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">tp4</string>
+    <string name="app_name">Contacts</string>
     <string name="last_name">Nom</string>
     <string name="first_name">Prénom</string>
     <string name="date_of_birth">Date de naissance</string>

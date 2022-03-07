@@ -1,6 +1,9 @@
 package fr.bartho.tp4.adapter
 
 import android.content.Context
+import android.content.Intent.getIntent
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,8 +13,9 @@ import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import fr.bartho.tp4.R
 import fr.bartho.tp4.data.Contact
+import java.io.FileInputStream
 import java.util.*
-import kotlin.collections.ArrayList
+
 
 class ContactAdapter : BaseAdapter {
 
@@ -49,13 +53,19 @@ class ContactAdapter : BaseAdapter {
         var imageView: ImageView = layoutItem.findViewById(R.id.imageView)
 
         textView.text = contact.firstName + " " + contact.lastName
-        imageView.setImageURI(contact.image)
 
-        //var resId: Int = context.resources.getIdentifier("ic_" + list[position].lowercase(Locale.getDefault()), "mipmap", context.packageName)
-        //var resId: Int = 0
+        val imageName: String? = contact.image
+        var bitmap: Bitmap? = null
 
-        //if (resId == 0) imageView.setImageResource(R.mipmap.ic_launcher)
-        //else imageView.setImageResource(resId)
+        try {
+            val file: FileInputStream = context.openFileInput(imageName)
+            bitmap = BitmapFactory.decodeStream(file)
+            file.close()
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+
+        if (bitmap != null) imageView.setImageBitmap(bitmap)
 
         return layoutItem
     }

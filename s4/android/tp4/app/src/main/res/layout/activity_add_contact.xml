@@ -10,9 +10,9 @@
         android:id="@+id/inputImage"
         android:layout_width="121dp"
         android:layout_height="101dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="28dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.939"
+        app:layout_constraintHorizontal_bias="0.129"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@android:drawable/sym_def_app_icon" />
@@ -21,68 +21,71 @@
         android:id="@+id/inputLastName"
         android:layout_width="190dp"
         android:layout_height="48dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="17dp"
+        android:layout_marginStart="55dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="15dp"
         android:ems="10"
         android:hint="@string/last_name"
         android:inputType="textPersonName"
-        app:layout_constraintEnd_toStartOf="@+id/inputImage"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/inputImage"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/inputFirstName"
         android:layout_width="190dp"
         android:layout_height="48dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="17dp"
+        android:layout_marginStart="55dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="15dp"
         android:ems="10"
         android:hint="@string/first_name"
         android:inputType="textPersonName"
-        app:layout_constraintEnd_toStartOf="@+id/inputImage"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inputImage" />
+        app:layout_constraintStart_toEndOf="@+id/inputImage"
+        app:layout_constraintTop_toBottomOf="@+id/inputLastName" />
 
     <EditText
-        android:id="@+id/inputDateOfBirth"
+        android:id="@+id/inputBirthdate"
         android:layout_width="190dp"
         android:layout_height="48dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="12dp"
         android:clickable="false"
         android:cursorVisible="false"
+        android:ems="10"
         android:focusable="false"
         android:focusableInTouchMode="false"
-        android:ems="10"
         android:hint="@string/date_of_birth"
         android:inputType="date"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.194"
+        app:layout_constraintHorizontal_bias="0.917"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/inputFirstName" />
 
     <RadioGroup
         android:id="@+id/inputSex"
-        android:layout_width="255dp"
-        android:layout_height="51dp"
+        android:layout_width="108dp"
+        android:layout_height="85dp"
         android:layout_marginTop="16dp"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.31"
+        app:layout_constraintHorizontal_bias="0.123"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inputDateOfBirth">
+        app:layout_constraintTop_toBottomOf="@+id/inputImage">
 
         <RadioButton
             android:id="@+id/inputSexMale"
-            android:layout_width="128dp"
-            android:layout_height="58dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:checked="true"
             android:text="@string/male" />
 
         <RadioButton
             android:id="@+id/inputSexFemale"
-            android:layout_width="130dp"
-            android:layout_height="51dp"
+            android:layout_width="match_parent"
+            android:layout_height="37dp"
             android:text="@string/female" />
 
     </RadioGroup>
@@ -91,27 +94,27 @@
         android:id="@+id/inputEmail"
         android:layout_width="335dp"
         android:layout_height="49dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="12dp"
         android:ems="10"
         android:hint="@string/mail"
         android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.693"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inputSex" />
+        app:layout_constraintTop_toBottomOf="@+id/inputPhone" />
 
     <EditText
         android:id="@+id/inputPhone"
         android:layout_width="335dp"
         android:layout_height="48dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="24dp"
         android:ems="10"
         android:hint="@string/phone_number"
         android:inputType="phone"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.68"
+        app:layout_constraintHorizontal_bias="0.693"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inputEmail" />
+        app:layout_constraintTop_toBottomOf="@+id/inputSex" />
 
     <Button
         android:id="@+id/validateBtn"

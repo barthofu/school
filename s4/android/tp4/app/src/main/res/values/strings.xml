@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">tp4</string>
+    <string name="app_name" translatable="false">Contacts</string>
     <string name="last_name">Last name</string>
     <string name="first_name">First name</string>
     <string name="date_of_birth">Date of birth</string>

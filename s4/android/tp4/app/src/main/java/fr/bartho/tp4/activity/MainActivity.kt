@@ -1,20 +1,16 @@
 package fr.bartho.tp4.activity
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.ListView
+import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.snackbar.Snackbar
 import fr.bartho.tp4.adapter.ContactAdapter
-import fr.bartho.tp4.data.Contact
-import fr.bartho.tp4.data.ContactsData
 import fr.bartho.tp4.databinding.ActivityMainBinding
+import fr.bartho.tp4.utils.ManageContacts
 
 class MainActivity : AppCompatActivity() {
-
-    //private var contacts: ArrayList<Contact> = arrayListOf()
 
     private lateinit var listView: ListView
     private lateinit var addButton: FloatingActionButton
@@ -25,34 +21,41 @@ class MainActivity : AppCompatActivity() {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
 
+        listView = binding.contacts
+
+        addButton = binding.addButton
+        addButton.setOnClickListener {
+            val intent = Intent(this, AddContactActivity::class.java)
+            startActivity(intent)
+        }
+
         setContentView(binding.root)
     }
 
     override fun onResume() {
         super.onResume()
 
-        listView = binding.contacts
-        addButton = binding.addButton
-
-        val contacts = ContactsData.contacts
+        ManageContacts.loadFromDisk(this)
+        val contacts = ManageContacts.contacts
 
         val contactAdapter = ContactAdapter(this, contacts)
         listView.adapter = contactAdapter
 
         listView.setOnItemClickListener { parent, view: View, position: Int, id: Long ->
-            Snackbar.make(listView, contacts[position].firstName + " " + contacts[position].lastName, Snackbar.LENGTH_SHORT).show()
+            val intent = Intent(this@MainActivity, ContactDetailsActivity::class.java)
+            intent.putExtra("position", position)
+            startActivity(intent)
         }
 
         listView.setOnItemLongClickListener { parent, view: View, position: Int, id: Long ->
 
-            contacts.removeAt(position)
-            contactAdapter.notifyDataSetChanged()
-            return@setOnItemLongClickListener true
-        }
+            // Suppression du contact dans le Manager
+            ManageContacts.deleteByPosition(this, position)
 
-        addButton.setOnClickListener {
-            val intent = Intent(this, AddContactActivity::class.java)
-            startActivity(intent)
+            // Notification
+            contactAdapter.notifyDataSetChanged()
+
+            return@setOnItemLongClickListener true
         }
     }
 }
