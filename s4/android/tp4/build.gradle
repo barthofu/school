@@ -8,3 +8,9 @@ plugins {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+android {
+    defaultConfig {
+        signingConfig signingConfigs.debug
+    }
+}
