@@ -1,5 +1,6 @@
 class Alarm {
-
+    
+    id = Math.random().toString(16).slice(2)
     time
     label
     sound
@@ -25,35 +26,68 @@ class Alarm {
         //console.log('Alarm : ' + this.label)
     }
 
+    getDOMElement () {
+        return document.getElementById(this.id)
+    }
+
+    setEvents () {
+
+        const DOMElement = this.getDOMElement()
+
+        // time
+        DOMElement.querySelector('.alarm-time').addEventListener('change', (e) => {
+            this.time = e.target.value
+        })
+
+        // label
+        DOMElement.querySelector('.alarm-label').addEventListener('change', (e) => {
+            this.label = e.target.value
+        })
+
+        // sound
+        DOMElement.querySelector('.alarm-sound').addEventListener('change', (e) => {
+            this.sound = e.target.value
+        })
+
+        // enabled
+        DOMElement.querySelector('.alarm-enabled').addEventListener('change', (e) => {
+            this.enabled = e.target.checked
+        })
+
+        // delete button
+        DOMElement.querySelector('.alarm-delete').addEventListener('click', (e) => {
+            horloge.removeAlarm(this.id)
+        })
+    }
+
     render () {
         return `
             <form class="alarm-form">
-                <div class="alarm-time">
+                <div class="formField">
                     <label for="alarm-time">Heure</label>
-                    <input type="time" id="alarm-time" name="alarm-time" value="${this.time}">
+                    <input type="time" class="alarm-time" name="alarm-time" value="${this.time}">
                 </div>
-                <div class="alarm-label">
+                <div class="formField">
                     <label for="alarm-label">Label</label>
-                    <input type="text" id="alarm-label" name="alarm-label" value="${this.label}">
+                    <input type="text" class="alarm-label" name="alarm-label" value="${this.label}">
                 </div>
-                <div class="alarm-sound">
+                <div class="formField">
                     <label for="alarm-sound">Son</label>
-                    <select id="alarm-sound" name="alarm-sound">
+                    <select class="alarm-sound" name="alarm-sound">
                         <option value="0" ${this.sound === 0 ? 'selected' : ''}>Aucun</option>
                         <option value="1" ${this.sound === 1 ? 'selected' : ''}>Bruitage 1</option>
                         <option value="2" ${this.sound === 2 ? 'selected' : ''}>Bruitage 2</option>
                     </select>
                 </div>
-                <div class="alarm-enabled">
+                <div class="formField">
                     <label for="alarm-enabled">Activé</label>
-                    <input type="checkbox" id="alarm-enabled" name="alarm-enabled" ${this.enabled ? 'checked' : ''}>
+                    <input type="checkbox" class="alarm-enabled" name="alarm-enabled" ${this.enabled ? 'checked' : ''}>
                 </div>
-                <div class="alarm-buttons">
+                <div class="formField">
                     <button type="button" class="alarm-delete">Supprimer</button>
                 </div>
             </form>
         `
-
     }
 
 }
@@ -72,8 +106,13 @@ class Horloge {
         this.render()
     }
 
-    getAlarm (position) {
-        return this.alarms[position]
+    getAlarm (id) {
+        for (const alarm of this.alarms) {
+            if (alarm.id === id) {
+                return alarm
+            }
+        }
+        return null
     }
 
     addAlarm (time, label, sound) {
@@ -83,15 +122,21 @@ class Horloge {
 
         const node = document.createElement('div')
         node.classList.add('alarm')
+        node.id = alarm.id
         node.innerHTML = alarm.render()
         this.alarmsDiv.appendChild(node)
+        alarm.setEvents()
     }
 
-    removeAlarm (position) {
+    removeAlarm (id) {
 
-        this.alarms.splice(position, 1)
+        const alarm = this.getAlarm(id)
+        if (alarm) {
 
-        this.alarmsDiv.removeChild(alarmsDiv.children[position])
+            this.alarmsDiv.removeChild(alarm.getDOMElement())
+            
+            this.alarms.splice(this.alarms.indexOf(alarm), 1)
+        }
     }
 
     checkAlarms () {
