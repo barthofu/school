@@ -10,6 +10,6 @@ setInterval(() => {
     horloge.checkAlarms()
 }, 1000)
 
-document.querySelector('.add-alarm')[0].addEventListener('click', () => {
-    horloge.addAlarm(new Date(), horloge.alarms.length + 1, 0)
+document.querySelector('.add-alarm').addEventListener('click', () => {
+    horloge.addAlarm(null, horloge.alarms.length + 1, 0)
 })

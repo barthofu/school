@@ -40,4 +40,3 @@ function parseChapitreNumber(chapitreNumber) {
 fetchChapitres().then(_ => {
     loadChapitre(1)
 })
-

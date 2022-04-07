@@ -10,6 +10,7 @@ task clean(type: Delete) {
 }
 
 android {
+
     defaultConfig {
         signingConfig signingConfigs.debug
     }

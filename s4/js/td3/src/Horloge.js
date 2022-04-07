@@ -1,3 +1,9 @@
+const sonneries = [
+    new Audio('../assets/totaly_spies.mp3'),
+    new Audio('../assets/captain_alerte_reveil.mp3'),
+    new Audio('../assets/brice_de_nice.mp3'),
+]
+
 class Alarm {
     
     id = Math.random().toString(16).slice(2)
@@ -18,12 +24,18 @@ class Alarm {
     }
 
     mustRing () {
-        return this.enabled && this.time <= Date.now()
+        return this.enabled && this.time === new Date().toLocaleTimeString().split(':').slice(0, 2).join(':')
     }
 
     ring () {
-        // TODO : play sound
-        //console.log('Alarm : ' + this.label)
+
+        // on désactive l'alarme
+        this.enabled = false
+        this.getDOMElement().querySelector('.alarm-enabled').checked = false
+        
+        // on joue le son
+        sonneries[this.sound].play()
+        console.log('Alarm : ' + this.label)
     }
 
     getDOMElement () {
@@ -74,9 +86,9 @@ class Alarm {
                 <div class="formField">
                     <label for="alarm-sound">Son</label>
                     <select class="alarm-sound" name="alarm-sound">
-                        <option value="0" ${this.sound === 0 ? 'selected' : ''}>Aucun</option>
-                        <option value="1" ${this.sound === 1 ? 'selected' : ''}>Bruitage 1</option>
-                        <option value="2" ${this.sound === 2 ? 'selected' : ''}>Bruitage 2</option>
+                        <option value="0" ${this.sound === 0 ? 'selected' : ''}>Totaly Spies</option>
+                        <option value="1" ${this.sound === 1 ? 'selected' : ''}>Captain Alerte Réveil</option>
+                        <option value="2" ${this.sound === 2 ? 'selected' : ''}>Brice de Nice</option>
                     </select>
                 </div>
                 <div class="formField">
