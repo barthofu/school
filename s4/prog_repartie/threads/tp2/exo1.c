@@ -19,9 +19,9 @@ struct compte {
     long somme;
 };
 
-void *f_thread (void *args_thread_r) {
+void *f_thread (void *args) {
 
-    struct compte *currCompte = (struct compte *)args_thread_r;
+    struct compte *currCompte = (struct compte *) args;
 
     printf("=== Nouvelle transaction ===\nID: %ld\nSomme: %ld\n", currCompte->id, currCompte->somme);
     
@@ -54,12 +54,12 @@ int main() {
     
     for (int i = 0; i < NB_THREADS; i++){
 
-        if (!pthread_join(pthread_id[i], (void *) &resultat))
+        if (pthread_join(pthread_id[i], (void *) &resultat))
             printf("Transaction terminée : %d\n", i);
 
     }
 
     printf("========\nNouveau solde : %ld€\nPartage stoplé\n", *p_solde);
 
-    exit(1);
+    return 0;
 }

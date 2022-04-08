@@ -11,6 +11,8 @@ void f_thread(int* u) {
 
 	printf("ID du thread: %d\n Argument: %d\n", getpid(), *u);
 	sleep(2);
+
+	pthread_exit(0);
 }
 
 int main() {
@@ -28,5 +30,5 @@ int main() {
 	printf("Main thread pid: %d\n", getpid());
 	sleep(10); 
 	
-	exit(1);
+	return 0;
 }

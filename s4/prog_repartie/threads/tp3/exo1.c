@@ -13,20 +13,20 @@ struct thread {
     int thread_id;
 };
 
-void *f_thread_1(void *args_thread_r) {
+void *f_thread_1(void *args) {
 
-    struct thread *currThread = (struct thread *)args_thread_r;
+    struct thread *thread_args = (struct thread *) args;
 
-    printf("Message: %d\n", currThread->thread_id);
+    printf("Message: %d\n", thread_args->thread_id);
 
     pthread_exit(0);
 }
 
-void *f_thread_2(void *args_thread_r) {
+void *f_thread_2(void *args) {
 
-    struct thread *currThread = (struct thread *)args_thread_r;
+    struct thread *thread_args = (struct thread *) args;
 
-    printf("Message: %d\n", currThread->thread_id);
+    printf("Message: %d\n", thread_args->thread_id);
 
     pthread_exit(0);
 }
@@ -42,20 +42,20 @@ int main() {
     printf("PID Main: %d\n", getpid());
 
     // Thread 1
-    if (pthread_create(&thread_args_1, NULL, (void *)f_thread_1, (void *) &thread_args_1) == -1)
+    if (pthread_create(&thread_1, NULL, (void *)f_thread_1, (void *) &thread_args_1) == -1)
         perror("Erreur lors de la création du thread\n");
 
-    if (!pthread_join(&thread_args_1, (void *) &resultat_1))
+    if (pthread_join(&thread_2, (void *) &resultat_1))
         printf("Thread 1 terminé\n");
 
     // Thread 2
-    if (pthread_create(&thread_args_2, NULL, (void *)f_thread_2, (void *) &thread_args_2) == -1)
+    if (pthread_create(&thread_2, NULL, (void *)f_thread_2, (void *) &thread_args_2) == -1)
         perror("Erreur lors de la création du thread\n");
 
-    if (!pthread_join(&thread_args_2, (void *) &resultat_2))
+    if (pthread_join(&thread_2, (void *) &resultat_2))
         printf("Thread 2 terminé\n");
 
     printf("=====\nFin");
 
-    return 1;
+    return 0;
 }

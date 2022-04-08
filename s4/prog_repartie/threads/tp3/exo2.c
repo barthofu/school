@@ -7,7 +7,7 @@
 #include <sys/types.h>
 #include <unistd.h>
 
-#define NBR_THREADS 10
+#define NB_THREADS 10
 
 long solde = 0;
 int barrier = 0;
@@ -20,15 +20,15 @@ struct thread {
     long id;
 };
 
-void *f_thread(void *args_thread_r) {
+void *f_thread(void *args) {
 
-    struct thread *currThread = (struct thread *)args_thread_r;
+    struct thread *thread_args = (struct thread *)args;
     int rand_number = rand() % 10;
     int i;
     
     barrier++;
 
-    printf("Thread n°%ld lancé\n", currThread->id);
+    printf("Thread n°%ld lancé\n", thread_args->id);
     
     if (barrier == NB_THREADS ) {
         
@@ -37,12 +37,12 @@ void *f_thread(void *args_thread_r) {
     
     } else {
 
-        printf("Thread n°%ld attend\n", currThread->id);
+        printf("Thread n°%ld attend\n", thread_args->id);
         sem_wait(&sem);
         sleep(rand_number);
     }
 
-    printf("Thread n°%ld a fini d'attendre\n", currThread->id);
+    printf("Thread n°%ld a fini d'attendre\n", thread_args->id);
     sem_post(&sem);
 
     pthread_exit(0);
@@ -52,24 +52,24 @@ int main() {
 
     sem_init(&sem, 1, 0);
 
-    struct thread currThread[NB_THREADS];
+    struct thread thread_args[NB_THREADS];
     long resultat;
     
     printf("PID Main: % d\n", getpid());
 
     for (int i = 0; i < NB_THREADS; i++) {
 
-        currThread[i].id = i;
+        thread_args[i].id = i;
 
-        if (pthread_create(&pthread_id[i], NULL, (void *)f_thread, (void *) &currThread[i]) == -1)
+        if (pthread_create(&pthread_id[i], NULL, (void *)f_thread, (void *) &thread_args[i]) == -1)
             perror("Erreur lors de la création du thread\n");
     }
     
     for(int i = 0; i < NB_THREADS; i++){
 
-        if (!pthread_join(pthread_id[i], (void *) &resultat))
+        if (pthread_join(pthread_id[i], (void *) &resultat))
             printf("Thread n°%d terminé\n", i);
     }
 
-    exit(1);
+    return 0;
 }

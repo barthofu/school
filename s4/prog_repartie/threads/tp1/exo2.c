@@ -4,7 +4,6 @@
 #include<stdlib.h>
 #include<errno.h>
 
-
 pthread_t pthread_id[2];
 
 void *status;
@@ -16,7 +15,7 @@ int f_thread(int* u) {
 	
 	sleep(2);
 	
-	return (0);
+	pthread_exit(0);
 }
 
 int main() {
@@ -38,5 +37,5 @@ int main() {
 		printf("fin du thread %i - %li \n",i, (long int) status);
 	}
 
-	exit(1);
+	return 0;
 }
