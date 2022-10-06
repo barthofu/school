@@ -1,30 +1,26 @@
 package models;
 
-enum DrugType {
-    Antibiotic,
-    Antiviral,
-    Antiparasite
-}
-
 public class Drug {
 
     protected String name;
     protected DrugType type;
-    protected int efficiency;
 
-    public Drug(String name, DrugType type, int efficiency) {
+    public Drug(String name, DrugType type) {
         this.name = name;
         this.type = type;
-        this.efficiency = efficiency;
+    }
+
+    public DrugType getType() {
+        return type;
+    }
+
+    public String getName() {
+        return name;
     }
 
     @Override
     public String toString() {
-        return "models.Drug{" +
-                "name='" + name + '\'' +
-                ", type=" + type +
-                ", efficiency=" + efficiency +
-                '}';
+        return name + " • " + type;
     }
 
 }

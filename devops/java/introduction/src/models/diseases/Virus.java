@@ -6,6 +6,10 @@ import models.DrugType;
 
 public class Virus extends Disease {
 
+    public Virus(String name, int force, int dangerousness, String symptoms) {
+        super(name, force, dangerousness, symptoms);
+    }
+
     @Override
     public int evolution() {
 
@@ -20,8 +24,8 @@ public class Virus extends Disease {
     @Override
     public boolean treat(Drug drug) {
 
-        if (drug.type == DrugType.Antiviral) this.force -= 10;
-        else if (drug.type == DrugType.Antibiotic) this.force -=1;
+        if (drug.getType() == DrugType.Antiviral) this.force -= 10;
+        else if (drug.getType() == DrugType.Antibiotic) this.force -=1;
         else return false;
 
         return true;

@@ -3,16 +3,17 @@ package models;
 import models.Disease;
 
 import java.util.HashSet;
+import java.util.stream.Collectors;
 
 public class Patient {
 
     protected String lastName;
     protected String firstName;
-    protected Double life;
-    protected Double age;
-    protected HashSet<Disease> diseases;
+    protected double life;
+    protected int age;
+    protected HashSet<Disease> diseases = new HashSet<>();
 
-    public Patient(String lastName, String firstName, Double life, Double age) {
+    public Patient(String lastName, String firstName, int age, double life) {
         this.lastName = lastName;
         this.firstName = firstName;
         this.life = life;
@@ -38,8 +39,9 @@ public class Patient {
 
         for (Disease disease : diseases) {
             disease.treat(drug);
-            if (disease.isCured()) diseases.remove(disease);
         }
+
+        diseases = diseases.stream().filter((disease) -> !disease.isCured()).collect(Collectors.toCollection(HashSet::new));
 
         if (!this.isSick()) numberOfSickPatients--;
     }
@@ -58,12 +60,16 @@ public class Patient {
 
     @Override
     public String toString() {
-        return "models.Patient{" +
-                "lastName='" + lastName + '\'' +
-                ", firstName='" + firstName + '\'' +
-                ", life=" + life +
-                ", age=" + age +
-                ", diseases=" + diseases +
-                '}';
+
+        String diseasesString = "";
+
+        for (Disease disease : diseases) {
+            diseasesString += "- " + disease.toString() + "\n";
+        }
+
+        return "" +
+                lastName + " " + firstName + " (" + age + " ans)\n" +
+                "vie: " + life + "\n" +
+                "maladies: \n" + diseasesString;
     }
 }

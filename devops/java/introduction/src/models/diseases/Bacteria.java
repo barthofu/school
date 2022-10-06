@@ -3,7 +3,9 @@ package models.diseases;
 import models.Disease;
 import models.Drug;
 import models.DrugType;
+import utils.RandomUtil;
 
+import java.util.List;
 import java.util.Random;
 
 enum BacteriaStage {
@@ -17,22 +19,20 @@ public class Bacteria extends Disease {
 
     private BacteriaStage stage;
 
-    public Bacteria() {
+    public Bacteria(String name, int force, int dangerousness, String symptoms) {
+        super(name, force, dangerousness, symptoms);
 
         // get a random stage from the enum
-        Random random = new Random();
-        BacteriaStage[] stages = BacteriaStage.values();
+        List<BacteriaStage> stages = List.of(BacteriaStage.values());
 
-        stage = stages[random.nextInt(stages.length)];
+        stage = RandomUtil.getRandomFromList(stages);
     }
 
     @Override
     public int evolution() {
 
-        Random random = new Random();
-
         // define the evolution action randomly
-        if (random.nextBoolean()) {
+        if (RandomUtil.randomInt(0, 1) == 0) {
             force += 5;
         } else {
             if (stage == BacteriaStage.Low) stage = BacteriaStage.Moderate;
@@ -56,21 +56,21 @@ public class Bacteria extends Disease {
         int initialForce = force;
 
         if (stage == BacteriaStage.Low) {
-            if (drug.type == DrugType.Antibiotic) force = 0;
-            else if (drug.type == DrugType.Antiviral) force -= 10;
+            if (drug.getType() == DrugType.Antibiotic) force = 0;
+            else if (drug.getType() == DrugType.Antiviral) force -= 10;
         }
         else if (stage == BacteriaStage.Moderate) {
-            if (drug.type == DrugType.Antibiotic) force -= 10;
-            else if (drug.type == DrugType.Antiviral) force -= 3;
+            if (drug.getType() == DrugType.Antibiotic) force -= 10;
+            else if (drug.getType() == DrugType.Antiviral) force -= 3;
         }
         else if (stage == BacteriaStage.Dangerous) {
-            if (drug.type == DrugType.Antibiotic) {
+            if (drug.getType() == DrugType.Antibiotic) {
                 stage = BacteriaStage.Moderate;
                 return true;
             }
         }
         else if (stage == BacteriaStage.Critic) {
-            if (drug.type == DrugType.Antibiotic) force -= 10;
+            if (drug.getType() == DrugType.Antibiotic) force -= 10;
         }
 
         if (initialForce != force) return true;
