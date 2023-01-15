@@ -1,8 +1,10 @@
 #!/bin/bash
 
+mkdir -p environment
+cd environment
 mkdir bin lib lib64 tmp proc media usr usr/lib lib/x86_64-linux-gnu usr/lib/x86_64-linux-gnu/
 
-#copy commands (à minima bash, ps, kill et ls)
+#copy commands
 cp -rfL /bin/bash ./bin
 cp -rfL /bin/ps   ./bin
 cp -rfL /bin/kill ./bin
@@ -11,10 +13,10 @@ cp -rfL /bin/ls   ./bin
 #copy libs
 
     #Bash deps
-    cp -rfL /lib/x86_64-linux-gnu/libtinfo.so.6   ./lib//x86_64-linux-gnu/
-    cp -rfL /lib/x86_64-linux-gnu/libdl.so.2      ./lib//x86_64-linux-gnu/
-    cp -rfL /lib/x86_64-linux-gnu/libc.so.6       ./lib//x86_64-linux-gnu/
-    cp -rfL /lib/x86_64-linux-gnu/libc.so.6       ./lib//x86_64-linux-gnu/
+    cp -rfL /lib/x86_64-linux-gnu/libtinfo.so.6   ./lib/x86_64-linux-gnu/
+    cp -rfL /lib/x86_64-linux-gnu/libdl.so.2      ./lib/x86_64-linux-gnu/
+    cp -rfL /lib/x86_64-linux-gnu/libc.so.6       ./lib/x86_64-linux-gnu/
+    cp -rfL /lib/x86_64-linux-gnu/libc.so.6       ./lib/x86_64-linux-gnu/
 
     cp -rfL /lib64/ld-linux-x86-64.so.2           ./lib64/
 
