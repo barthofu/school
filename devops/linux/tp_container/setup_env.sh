@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# init environment
 mkdir -p environment
 cd environment
 mkdir bin lib lib64 tmp proc media usr usr/lib lib/x86_64-linux-gnu usr/lib/x86_64-linux-gnu/
@@ -61,5 +62,9 @@ cp -rfL /bin/ls   ./bin
     cp -rfL /lib64/ld-linux-x86-64.so.2 ./lib64/
 
     cp -rfL /usr/lib/x86_64-linux-gnu/libpcre2-8.so.0 ./usr/lib/x86_64-linux-gnu/
+
+# generate container binary
+cd ..
+gcc -o environment/container src/main.c
 
 #end
