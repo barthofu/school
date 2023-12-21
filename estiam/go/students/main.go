@@ -5,12 +5,16 @@ import (
 	"fmt"
 	"os"
 	"strings"
+	"students/libs"
 	"students/models"
 	"students/utils"
 )
 
+var db = libs.InitDatabase()
+
 // add a student to the list
 func addStudent(students *[]models.Student) {
+
 	var student models.Student
 
 	fmt.Print("Entrez le nom de l'étudiant: ")
@@ -26,7 +30,6 @@ func addStudent(students *[]models.Student) {
 	for {
 		fmt.Print("Entrez l'âge de l'étudiant: ")
 		_, err := fmt.Scanf("%d\n", &student.Age)
-		println(student.Age, err == nil)
 		if err == nil && student.Age > 0 {
 			break
 		}
@@ -36,7 +39,16 @@ func addStudent(students *[]models.Student) {
 	// incremental id generation
 	student.ID = len(*students) + 1
 
+	// add student to the local slice
 	*students = append(*students, student)
+
+	// add student to database
+	_, err = models.CreateStudent(db, student)
+	if err != nil {
+		fmt.Println("Erreur lors de l'ajout de l'étudiant:", err)
+		return
+	}
+
 	fmt.Println("Étudiant ajouté avec succès!")
 }
 
@@ -65,9 +77,18 @@ func main() {
 	// ====================
 
 	var students []models.Student
-	loadErr := utils.LoadFromFile("students.json", &students)
-	if loadErr != nil {
-		fmt.Println("Erreur lors du chargement du fichier:", loadErr)
+
+	// >> from previous version of this TP
+	// loadErr := utils.LoadFromFile("data/students.json", &students)
+	// if loadErr != nil {
+	// 	fmt.Println("Erreur lors du chargement du fichier:", loadErr)
+	// 	os.Exit(1)
+	// }
+
+	// load students from database
+	students, getStudentsError := models.GetAllStudents(db)
+	if getStudentsError != nil {
+		fmt.Println("Erreur lors du chargement des étudiants:", getStudentsError)
 		os.Exit(1)
 	}
 
@@ -86,7 +107,7 @@ func main() {
 	displayStudents(students)
 
 	// save students to JSON file
-	saveErr := utils.SaveToFile(students, "students.json")
+	saveErr := utils.SaveToFile(students, "data/students.json")
 	if saveErr != nil {
 		fmt.Println("Erreur lors de l'enregistrement du fichier:", saveErr)
 	} else {
@@ -101,7 +122,7 @@ func main() {
 	fmt.Printf("L'âge moyen des étudiants est de %.2f ans.\n", averageAge)
 
 	// save average age to JSON file
-	saveErr = utils.SaveToFile(averageAge, "average_age.json")
+	saveErr = utils.SaveToFile(averageAge, "data/average_age.json")
 	if saveErr != nil {
 		fmt.Println("Erreur lors de l'enregistrement du fichier:", saveErr)
 	} else {

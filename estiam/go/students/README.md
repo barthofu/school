@@ -5,5 +5,18 @@
 
 ## Requirements
 
+- [Go](https://golang.org/doc/install) >= 1.21
+
 ## Usage
 
+### Run
+
+```bash
+go run .
+```
+
+### Build
+
+```bash
+go build .
+```
