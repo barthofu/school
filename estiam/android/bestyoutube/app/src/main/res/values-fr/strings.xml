@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Best Youtube</string>
+    <string name="title_activity_add_video">Ajouter une vidéo</string>
+    <string name="text_validation_success">Champs texte valide</string>
+    <string name="text_validation_error_empty_field">Champs texte vide</string>
+    <string name="add">Ajouter</string>
+    <string name="url">URL</string>
+    <string name="description">Description</string>
+    <string name="name">Name</string>
+    <string name="category">Catégorie</string>
+    <string name="save">Enregistrer</string>
+    <string name="title_activity_detail_video">Details</string>
+    <string-array name="categories">
+        <item>Comédie</item>
+        <item>Musique</item>
+        <item>Actualités</item>
+        <item>Sports</item>
+        <item>Voyage</item>
+        <item>Documentaire</item>
+        <item>Science</item>
+        <item>Cuisine</item>
+        <item>Technologie</item>
+        <item>Art</item>
+        <item>Business</item>
+        <item>Education</item>
+        <item>Santé</item>
+        <item>Histoire</item>
+        <item>Politique</item>
+        <item>Jeux Vidéo</item>
+    </string-array>
+    <string name="title_activity_edit_video">Modifier une vidéo</string>
+    <string name="all_videos_title">Toutes les vidéos</string>
+    <string name="favorited_videos_title">Vidéos favorites</string>
+    <string name="delete_confirmation">Es-tu sûr de vouloir supprimer cette vidéo ?</string>
+    <string name="yes">Oui</string>
+    <string name="no">Non</string>
+</resources>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Film Quiz</string>
+    <string name="btn_true">Vrai</string>
+    <string name="btn_false">Faux</string>
+    <string name="question_1">Le Studio Ghibli a remporté un Oscar du meilleur film d\'animation pour \"Le Voyage de Chihiro\" (Spirited Away).</string>
+    <string name="question_2">\"Le Château ambulant\" (Howl\'s Moving Castle) est réalisé par Hayao Miyazaki.</string>
+    <string name="question_3">Interstellar a remporté un Oscar de la meilleure photographie.</string>
+    <string name="question_4">Dans \"Fight Club,\" le personnage de Brad Pitt s\'appelle Tyler Durden.</string>
+    <string name="question_5">Dans \"Bee Movie,\" les abeilles décident de poursuivre les humains en justice pour vol de miel.</string>
+    <string name="correct_answer">Bonne réponse !</string>
+    <string name="bad_answer">Mauvaise réponse...</string>
+</resources>

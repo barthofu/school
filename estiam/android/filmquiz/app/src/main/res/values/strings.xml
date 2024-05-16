@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Film Quiz</string>
+    <string name="btn_true">True</string>
+    <string name="btn_false">False</string>
+    <string name="question_1">Studio Ghibli won an Academy Award for Best Animated Feature for \"Spirited Away.\"</string>
+    <string name="question_2">\"Howl\'s Moving Castle\" is directed by Hayao Miyazaki.</string>
+    <string name="question_3">Interstellar won an Academy Award for Best Cinematography.</string>
+    <string name="question_4">In \"Fight Club,\" Brad Pitt\'s character is named Tyler Durden.</string>
+    <string name="question_5">In \"Bee Movie,\" the bees decide to sue humans for stealing honey.</string>
+    <string name="correct_answer">Correct answer!</string>
+    <string name="bad_answer">Bad answer...</string>
+</resources>

@@ -1,0 +1,38 @@
+<resources>
+    <string name="app_name">Best Youtube</string>
+    <string name="title_activity_add_video">Add a video</string>
+    <string name="text_validation_success">Valid text input</string>
+    <string name="text_validation_error_empty_field">Empty text input</string>
+    <string name="add">Add</string>
+    <string name="url">URL</string>
+    <string name="description">Description</string>
+    <string name="name">Name</string>
+    <string name="category">Category</string>
+    <string name="save">Save</string>
+    <string name="title_activity_detail_video">Details</string>
+    <string-array name="categories">
+        <item>Comedy</item>
+        <item>Music</item>
+        <item>News</item>
+        <item>Sports</item>
+        <item>Travel</item>
+        <item>Documentary</item>
+        <item>Science</item>
+        <item>Food</item>
+        <item>Technology</item>
+        <item>Art</item>
+        <item>Business</item>
+        <item>Education</item>
+        <item>Health</item>
+        <item>History</item>
+        <item>Politics</item>
+        <item>Video Games</item>
+    </string-array>
+    <string name="title_activity_edit_video">Edit a video</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="all_videos_title">All videos</string>
+    <string name="favorited_videos_title">Favorited videos</string>
+    <string name="delete_confirmation">Are you sure you want to delete this video?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+</resources>
